@@ -20,6 +20,19 @@
                 return "Scissors";
             }
         }
+        const getHumnanChoice = () => {
+            const input = prompt("Rock, Paper, or Scissors?").toLowerCase();
+            if(input === "rock") {
+                return "Rock";
+            }
+            else if(input === "paper") {
+                return "Paper";
+            }
+            else if(input === "scissors") {
+                return "Scissors";
+            }
+        }
+        console.log(getHumnanChoice());
         console.log(getComputerChoice());
     </script>
 </body>
