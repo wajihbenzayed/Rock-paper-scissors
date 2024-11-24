@@ -32,8 +32,6 @@
                 return "Scissors";
             }
         }
-        let humanScore = 0;
-        let computerScore = 0;
         const playRound = (humanChoice, computerChoice) => {
             if(humanChoice === computerChoice) {
                 return "It's a Tie"
@@ -55,6 +53,25 @@
                 return "You Lose! " + computerChoice + " beats " + humanChoice;
             }
         }
+        let humanScore = 0;
+        let computerScore = 0;
+        const playGame = () => {
+            for(let i = 0; i < 5; i++) {
+                const humanChoice = getHumanChoice();
+                const computerChoice = getComputerChoice();
+                console.log(playRound(humanChoice, computerChoice));
+            }
+            if(humanScore > computerScore) {
+                console.log("You Won the game!");
+            }
+            else if(humanScore < computerScore) {
+                console.log("You Lost the game!");
+            }
+            else {
+                console.log("It's a tie!");
+            }
+        }
+        playGame();
     </script>
 </body>
 </html>
