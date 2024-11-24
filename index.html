@@ -20,7 +20,7 @@
                 return "Scissors";
             }
         }
-        const getHumnanChoice = () => {
+        const getHumanChoice = () => {
             const input = prompt("Rock, Paper, or Scissors?").toLowerCase();
             if(input === "rock") {
                 return "Rock";
@@ -32,8 +32,29 @@
                 return "Scissors";
             }
         }
-        console.log(getHumnanChoice());
-        console.log(getComputerChoice());
+        let humanScore = 0;
+        let computerScore = 0;
+        const playRound = (humanChoice, computerChoice) => {
+            if(humanChoice === computerChoice) {
+                return "It's a Tie"
+            }
+            else if(humanChoice === "Rock" && computerChoice === "Scissors") {
+                humanScore++;
+                return "You Win! Rock beats Scissors";
+            }
+            else if(humanChoice === "Paper" && computerChoice === "Rock") {
+                humanScore++;
+                return "You Win! Paper beats Rock";
+            }
+            else if(humanChoice === "Scissors" && computerChoice === "Paper") {
+                humanScore++;
+                return "You Win! Scissors beats Paper";
+            }
+            else {
+                computerScore++;
+                return "You Lose! " + computerChoice + " beats " + humanChoice;
+            }
+        }
     </script>
 </body>
 </html>
