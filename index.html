@@ -5,10 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="container">
+        <div class="buttons">
+        <button onclick="playRound('Rock')">Rock</button>
+        <button onclick="playRound('Paper')">Paper</button>
+        <button onclick="playRound('Scissors')">Scissors</button>
+        </div>
+        <div class="result-container">
+            <h1 id="result"></h1>
+        </div>
+    </div>
+
     <script>
+        let humanScore = 0;
+        let computerScore = 0;
+        const textResult = document.getElementById("result");
+
         const getComputerChoice = () => {
+
             const random = Math.floor(Math.random() * 3) + 1;
             if(random === 1) {
                 return "Rock";
@@ -20,58 +37,39 @@
                 return "Scissors";
             }
         }
-        const getHumanChoice = () => {
-            const input = prompt("Rock, Paper, or Scissors?").toLowerCase();
-            if(input === "rock") {
-                return "Rock";
-            }
-            else if(input === "paper") {
-                return "Paper";
-            }
-            else if(input === "scissors") {
-                return "Scissors";
-            }
-        }
-        const playRound = (humanChoice, computerChoice) => {
+        const playRound = (humanChoice) => {
+
+            const computerChoice = getComputerChoice();
             if(humanChoice === computerChoice) {
-                return "It's a Tie"
+                textResult.innerHTML = "Result: It's a Tie<br>"
             }
             else if(humanChoice === "Rock" && computerChoice === "Scissors") {
                 humanScore++;
-                return "You Win! Rock beats Scissors";
+                textResult.innerHTML = "Result: You Win! Rock beats Scissors<br>";
             }
             else if(humanChoice === "Paper" && computerChoice === "Rock") {
                 humanScore++;
-                return "You Win! Paper beats Rock";
+                textResult.innerHTML = "Result: You Win! Paper beats Rock<br>";
             }
             else if(humanChoice === "Scissors" && computerChoice === "Paper") {
                 humanScore++;
-                return "You Win! Scissors beats Paper";
+                textResult.innerHTML = "Result: You Win! Scissors beats Paper<br>";
             }
             else {
                 computerScore++;
-                return "You Lose! " + computerChoice + " beats " + humanChoice;
+                textResult.innerHTML = "Result: You Lose! " + computerChoice + " beats " + humanChoice + "<br>";
+            }
+            if(humanScore >= 5) {
+                humanScore = 0;
+                computerScore = 0;
+                textResult.innerHTML = "You Won The Game"
+            }
+            else if(computerScore >= 5) {
+                humanScore = 0;
+                computerScore = 0;
+                textResult.innerHTML = "You Lost The Game"
             }
         }
-        let humanScore = 0;
-        let computerScore = 0;
-        const playGame = () => {
-            for(let i = 0; i < 5; i++) {
-                const humanChoice = getHumanChoice();
-                const computerChoice = getComputerChoice();
-                console.log(playRound(humanChoice, computerChoice));
-            }
-            if(humanScore > computerScore) {
-                console.log("You Won the game!");
-            }
-            else if(humanScore < computerScore) {
-                console.log("You Lost the game!");
-            }
-            else {
-                console.log("It's a tie!");
-            }
-        }
-        playGame();
     </script>
 </body>
 </html>
